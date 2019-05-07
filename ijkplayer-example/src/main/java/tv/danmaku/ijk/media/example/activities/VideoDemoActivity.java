@@ -33,7 +33,6 @@ public class VideoDemoActivity extends AppCompatActivity  {
 
     private static final String TAG = "VideoActivity";
 
-    private AndroidMediaController mMediaController;
     private IjkVideoView mVideoView;
     private EditText mUrlEt;
     private Button mStartBt;
@@ -47,14 +46,12 @@ public class VideoDemoActivity extends AppCompatActivity  {
 
         mSettings = new Settings(this);
 
-        mMediaController = new AndroidMediaController(this, false);
 
         // init player
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
 
         mVideoView = (IjkVideoView) findViewById(R.id.video_view);
-        mVideoView.setMediaController(mMediaController);
 
         mUrlEt = (EditText) findViewById(R.id.url_et);
         mStartBt = (Button) findViewById(R.id.play_bt);
