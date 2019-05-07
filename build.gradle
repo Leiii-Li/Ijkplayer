@@ -14,14 +14,3 @@ allprojects {
         google()
     }
 }
-
-
-ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.3"
-    targetSdkVersion = 25
-}
-
-wrapper {
-    gradleVersion = '2.14.1'
-}
