@@ -17,9 +17,13 @@
 
 package tv.danmaku.ijk.media.example.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,15 +34,21 @@ import tv.danmaku.ijk.media.player.Settings;
 import tv.danmaku.ijk.media.player.widget.media.IjkVideoView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
-public class VideoDemoActivity extends AppCompatActivity  {
+public class VideoDemoActivity extends AppCompatActivity {
 
     private static final String TAG = "VideoActivity";
-
+    private static final String PATH_KEY = "PATH_KEY";
     private IjkVideoView mVideoView;
     private EditText mUrlEt;
     private Button mStartBt;
     private Settings mSettings;
     private boolean mBackPressed;
+
+    public static void intentTo(Context context, String path) {
+        Intent intent = new Intent(context, VideoDemoActivity.class);
+        intent.putExtra(PATH_KEY, path);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +56,6 @@ public class VideoDemoActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_player);
 
         mSettings = new Settings(this);
-
 
         // init player
         IjkMediaPlayer.loadLibrariesOnce(null);
@@ -61,6 +70,13 @@ public class VideoDemoActivity extends AppCompatActivity  {
         });
         mUrlEt = (EditText) findViewById(R.id.url_et);
         mStartBt = (Button) findViewById(R.id.play_bt);
+
+        Intent intent = getIntent();
+        String path = intent.getStringExtra(PATH_KEY);
+        if (!TextUtils.isEmpty(path)) {
+            mUrlEt.setText(path);
+            onClick(null);
+        }
     }
 
     @Override
@@ -82,7 +98,7 @@ public class VideoDemoActivity extends AppCompatActivity  {
         IjkMediaPlayer.native_profileEnd();
     }
 
-    public void onClick(View view){
+    public void onClick(View view) {
         String url = mUrlEt.getText().toString();
         // prefer mVideoPath
         mVideoView.setVideoURI(Uri.parse(url));

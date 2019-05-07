@@ -101,13 +101,4 @@ public class Settings {
         return mSharedPreferences.getBoolean(key, false);
     }
 
-    public String getLastDirectory() {
-        String key = mAppContext.getString(R.string.pref_key_last_directory);
-        return mSharedPreferences.getString(key, "/");
-    }
-
-    public void setLastDirectory(String path) {
-        String key = mAppContext.getString(R.string.pref_key_last_directory);
-        mSharedPreferences.edit().putString(key, path).apply();
-    }
 }
