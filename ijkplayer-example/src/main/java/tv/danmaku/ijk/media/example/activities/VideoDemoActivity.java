@@ -24,8 +24,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import tv.danmaku.ijk.media.example.R;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
+import tv.danmaku.ijk.media.player.IMediaPlayer.OnInfoListener;
 import tv.danmaku.ijk.media.player.Settings;
-import tv.danmaku.ijk.media.player.widget.media.AndroidMediaController;
 import tv.danmaku.ijk.media.player.widget.media.IjkVideoView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
@@ -52,7 +53,12 @@ public class VideoDemoActivity extends AppCompatActivity  {
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
 
         mVideoView = (IjkVideoView) findViewById(R.id.video_view);
-
+        mVideoView.setOnInfoListener(new OnInfoListener() {
+            @Override
+            public boolean onInfo(IMediaPlayer mp, int what, int extra) {
+                return false;
+            }
+        });
         mUrlEt = (EditText) findViewById(R.id.url_et);
         mStartBt = (Button) findViewById(R.id.play_bt);
     }
