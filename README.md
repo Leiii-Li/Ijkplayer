@@ -9,7 +9,7 @@
 cd /config/
 rm module.sh
 ln -s module-lite.sh module.sh
-## 如果做了以上修改配置操作，那么在compile-openssl 时需要先执行 clean操作
+## 如果做了以上修改配置操作，那么在compile-openssl，compile-ffmepg 时需要先执行 clean操作
 ```
 
 ### Build Android
