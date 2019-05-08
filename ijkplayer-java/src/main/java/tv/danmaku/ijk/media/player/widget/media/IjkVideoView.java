@@ -148,7 +148,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         mAppContext = context.getApplicationContext();
         mSettings = new Settings(mAppContext);
 
-        initBackground();
         initRenders();
 
         mVideoWidth = 0;
@@ -948,21 +947,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         return text;
     }
 
-    //-------------------------
-    // Extend: Player
-    //-------------------------
-    public int togglePlayer() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.release();
-        }
-
-        if (mRenderView != null) {
-            mRenderView.getView().invalidate();
-        }
-        openVideo();
-        return mSettings.getPlayer();
-    }
-
     @NonNull
     public static String getPlayerText(Context context, int player) {
         String text;
@@ -1073,14 +1057,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     //-------------------------
 
     private boolean mEnableBackgroundPlay = false;
-
-    private void initBackground() {
-        mEnableBackgroundPlay = mSettings.getEnableBackgroundPlay();
-        if (mEnableBackgroundPlay) {
-            MediaPlayerService.intentToStart(getContext());
-            mMediaPlayer = MediaPlayerService.getMediaPlayer();
-        }
-    }
 
     public boolean isBackgroundPlayEnabled() {
         return mEnableBackgroundPlay;

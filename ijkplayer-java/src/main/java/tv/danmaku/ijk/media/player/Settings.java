@@ -36,21 +36,6 @@ public class Settings {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mAppContext);
     }
 
-    public boolean getEnableBackgroundPlay() {
-        String key = mAppContext.getString(R.string.pref_key_enable_background_play);
-        return mSharedPreferences.getBoolean(key, false);
-    }
-
-    public int getPlayer() {
-        String key = mAppContext.getString(R.string.pref_key_player);
-        String value = mSharedPreferences.getString(key, "");
-        try {
-            return Integer.valueOf(value).intValue();
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
     public boolean getUsingMediaCodec() {
         String key = mAppContext.getString(R.string.pref_key_using_media_codec);
         return mSharedPreferences.getBoolean(key, false);
