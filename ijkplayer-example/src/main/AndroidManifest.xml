@@ -24,7 +24,7 @@
 
 
     </activity>
-    <activity android:name=".activities.FileExplorerActivity">
+    <activity android:name=".activities.ScrollActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
